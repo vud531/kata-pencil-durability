@@ -99,20 +99,20 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">class Pencil {
-  constructor(property = { pointDuribility: 0 }) {
-    this.pointDuribility = property.pointDuribility;
+  constructor(property = { pointDurability: 0 }) {
+    this.pointDurability = property.pointDurability;
   }
 &nbsp;
   write(text, paper = { content: "" }) {
     let newText = "";
     for (let i = 0; i &lt; text.length; i++) {
-      if (this.pointDuribility) {
+      if (this.pointDurability) {
         const char = text[i];
         newText += char;
-        char !== " " &amp;&amp; char.toLowerCase() === char &amp;&amp; this.pointDuribility--;
+        char !== " " &amp;&amp; char.toLowerCase() === char &amp;&amp; this.pointDurability--;
 &nbsp;
         if (char !== " " &amp;&amp; char.toLowerCase() !== char) {
-          this.pointDuribility -= 2;
+          this.pointDurability -= 2;
         }
       } else {
         newText += " ";

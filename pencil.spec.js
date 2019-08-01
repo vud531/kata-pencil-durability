@@ -1,27 +1,24 @@
 const Pencil = require("./pencil");
 const Paper = require("./paper");
 
-const properties = {
-  pointDuribility: 40000
+const property = {
+  pointiness: 100,
+  length: 10
 };
 
 const draft = new Paper();
 const note = new Paper();
 const shoppingList = new Paper("apples");
 const dullPencil = new Pencil();
-const pencil = new Pencil({ pointDuribility: 100 });
+const pencil = new Pencil(property);
 
 describe("Pencil Class", () => {
   describe("Constructor method", () => {
     test("it constructs a new pencil object with specified properties", () => {
-      const myPencil = new Pencil(properties);
-      expect(myPencil.pointDuribility).toBe(40000);
+      const myPencil = new Pencil({ pointiness: 40000, length: 1000 });
+      expect(myPencil.pointDurability).toBe(40000);
       expect(myPencil.POINTINESS).toBe(40000);
-    });
-
-    test("it constructs a new pencil object with default properties", () => {
-      expect(dullPencil.pointDuribility).toBe(0);
-      expect(dullPencil.POINTINESS).toBe(0);
+      expect(myPencil.length).toBe(1000);
     });
   });
 
@@ -43,9 +40,9 @@ describe("Pencil Class", () => {
         const reminderLength = reminder.split("").filter(c => c !== " ").length;
         const itemsLength = items.split("").filter(c => c !== " ").length;
         const expectedLength = 100 - reminderLength - itemsLength;
-        expect(pencil.pointDuribility).toBe(expectedLength);
+        expect(pencil.pointDurability).toBe(expectedLength);
         pencil.write(`I AM YELLING`);
-        expect(pencil.pointDuribility).toBe(expectedLength - 20);
+        expect(pencil.pointDurability).toBe(expectedLength - 20);
       });
 
       test("it write different types of whitespace character", () => {
@@ -66,7 +63,7 @@ describe("Pencil Class", () => {
         tempPaper = pencil.write(whitespaces);
 
         expect(tempPaper.content).toBe(`\r\n\t`);
-        expect(pencil.pointDuribility).toBe(20);
+        expect(pencil.pointDurability).toBe(20);
         pencil.write(`\n`, note);
         expect(note.content).toBe(`finish the kata as soon as possible\n`);
         pencil.write(`         `, note);
@@ -84,7 +81,7 @@ describe("Pencil Class", () => {
         expect(shoppingList.content).toBe(
           "apples ,oranges, milk, cereal, bread, eggs              "
         );
-        expect(dullPencil.pointDuribility).toBe(0);
+        expect(dullPencil.pointDurability).toBe(0);
       });
     });
   });
@@ -92,7 +89,10 @@ describe("Pencil Class", () => {
   describe("Sharpen", () => {
     test("it resets the pointDurability of the pencil", () => {
       pencil.sharpen();
-      expect(pencil.pointDuribility).toBe(100);
+      expect(pencil.pointDurability).toBe(100);
+    });
+    test("it reduce the pencil's length", () => {
+      expect(pencil.length).toBe(9);
     });
   });
 });

@@ -1,21 +1,23 @@
 class Pencil {
-  constructor(property = { pointDuribility: 0 }) {
-    this.POINTINESS = property.pointDuribility;
-    this.pointDuribility = property.pointDuribility;
+  constructor(property = { pointiness: 0, length: 0 }) {
+    const { pointiness, pointDurability, length } = property;
+    this.POINTINESS = pointiness;
+    this.pointDurability = pointiness;
+    this.length = length;
   }
 
   write(text, paper = { content: "" }) {
     let newText = "";
     for (let i = 0; i < text.length; i++) {
-      if (this.pointDuribility) {
+      if (this.pointDurability) {
         const char = text[i];
         newText += char;
         char.trim().length &&
           char.toLowerCase() === char &&
-          this.pointDuribility--;
+          this.pointDurability--;
 
         if (char.trim().length && char.toLowerCase() !== char) {
-          this.pointDuribility -= 2;
+          this.pointDurability -= 2;
         }
       } else {
         newText += " ";
@@ -26,8 +28,13 @@ class Pencil {
   }
 
   sharpen() {
-    this.pointDuribility = this.POINTINESS;
+    if (this.length) {
+      this.pointDurability = this.POINTINESS;
+      this.length--;
+    }
   }
+
+  erase(text, paper) {}
 }
 
 module.exports = Pencil;
