@@ -28,9 +28,7 @@ describe("Pencil Class", () => {
       const reminder = "finish the kata as soon as possible"; //29
       const items = " ,oranges, milk, cereal, bread, eggs"; //31
       pencil.write(reminder, note);
-      console.log(pencil.pointDuribility);
       pencil.write(items, shoppingList);
-      console.log(pencil.pointDuribility);
 
       test("it appends text to the content of the paper", () => {
         expect(note.content).toBe(reminder);
@@ -42,7 +40,10 @@ describe("Pencil Class", () => {
       test("it degrades the pointiness of pencil", () => {
         const reminderLength = reminder.split("").filter(c => c !== " ").length;
         const itemsLength = items.split("").filter(c => c !== " ").length;
-        expect(pencil.pointDuribility).toBe(100 - reminderLength - itemsLength);
+        const expectedLength = 100 - reminderLength - itemsLength;
+        expect(pencil.pointDuribility).toBe(expectedLength);
+        pencil.write(`I AM YELLING`);
+        expect(pencil.pointDuribility).toBe(expectedLength - 20);
       });
     });
 
