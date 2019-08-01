@@ -4,10 +4,10 @@ First of all, make sure that you have NodeJS installed on your machine. You can 
 
 If you have NodeJS installed and ready on your machine, you can go ahead with the following steps:
 
-1. open up your terminal or CMD (you can `cd` to your own workspace directory if you prefer)
-2. within the cli, you can start typing `git clone https://github.com/vud531/kata-pencil-durability` to clone the solution repository
-3. after that, you can type `cd kata-pencil-durability` to go to the solution directory
-4. finally, you can type `npm test` to start testing the modules/classes with jest
+1. Open up your terminal or CMD (you can `cd` to your own workspace directory if you prefer)
+2. Within the cli, you can start typing `git clone https://github.com/vud531/kata-pencil-durability` to clone the solution repository
+3. After that, you can type `cd kata-pencil-durability` to go to the solution directory
+4. Finally, you can type `npm test` to start testing the modules/classes with jest
 
 You should now be able to view the test results in the terminal.
 
