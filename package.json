@@ -1,5 +1,8 @@
 {
   "scripts": {
     "test": "npx jest --watchAll"
+  },
+  "dependencies": {
+    "jest": "^24.8.0"
   }
 }
