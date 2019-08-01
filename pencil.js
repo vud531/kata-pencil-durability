@@ -3,7 +3,9 @@ class Pencil {
     this.pointDuribility = property.pointDuribility;
   }
 
-  write(paper) {}
+  write(text, paper) {
+    paper.content += text;
+  }
 }
 
 module.exports = Pencil;
