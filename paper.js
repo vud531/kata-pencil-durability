@@ -1,7 +1,7 @@
 class Paper {
   constructor(text = "") {
     this.content = text;
-    this.writePosition = 0;
+    this.writePosition = text.length;
     this.erasePosition = text.length;
   }
 }

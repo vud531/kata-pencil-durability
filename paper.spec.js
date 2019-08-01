@@ -13,7 +13,7 @@ describe("Paper Class", () => {
       const text = "She sells sea shells";
       const paper = new Paper(text);
       expect(paper.content).toBe("She sells sea shells");
-      expect(paper.writePosition).toBe(0);
+      expect(paper.writePosition).toBe(text.length);
       expect(paper.erasePosition).toBe(text.length);
     });
 
