@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1564674880342" clover="3.2.0">
+  <project timestamp="1564674880342" name="All files">
+    <metrics statements="17" coveredstatements="17" conditionals="12" coveredconditionals="12" methods="3" coveredmethods="3" elements="32" coveredelements="32" complexity="0" loc="17" ncloc="17" packages="1" files="2" classes="2"/>
+    <file name="paper.js" path="C:\Users\ducba\projects\kata-pencil-durability\paper.js">
+      <metrics statements="4" coveredstatements="4" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
+      <line num="3" count="5" type="stmt"/>
+      <line num="4" count="5" type="stmt"/>
+      <line num="5" count="5" type="stmt"/>
+      <line num="9" count="2" type="stmt"/>
+    </file>
+    <file name="pencil.js" path="C:\Users\ducba\projects\kata-pencil-durability\pencil.js">
+      <metrics statements="13" coveredstatements="13" conditionals="11" coveredconditionals="11" methods="2" coveredmethods="2"/>
+      <line num="3" count="4" type="stmt"/>
+      <line num="7" count="5" type="stmt"/>
+      <line num="8" count="5" type="stmt"/>
+      <line num="9" count="111" type="cond" truecount="2" falsecount="0"/>
+      <line num="10" count="83" type="stmt"/>
+      <line num="11" count="83" type="stmt"/>
+      <line num="12" count="83" type="cond" truecount="3" falsecount="0"/>
+      <line num="14" count="83" type="cond" truecount="4" falsecount="0"/>
+      <line num="15" count="10" type="stmt"/>
+      <line num="18" count="28" type="stmt"/>
+      <line num="21" count="5" type="stmt"/>
+      <line num="22" count="5" type="stmt"/>
+      <line num="26" count="2" type="stmt"/>
+    </file>
+  </project>
+</coverage>

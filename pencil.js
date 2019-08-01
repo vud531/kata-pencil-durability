@@ -9,9 +9,11 @@ class Pencil {
       if (this.pointDuribility) {
         const char = text[i];
         newText += char;
-        char !== " " && char.toLowerCase() === char && this.pointDuribility--;
+        char.trim().length &&
+          char.toLowerCase() === char &&
+          this.pointDuribility--;
 
-        if (char !== " " && char.toLowerCase() !== char) {
+        if (char.trim().length && char.toLowerCase() !== char) {
           this.pointDuribility -= 2;
         }
       } else {
