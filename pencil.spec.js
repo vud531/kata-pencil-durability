@@ -9,22 +9,24 @@ const draft = new Paper();
 const note = new Paper();
 const shoppingList = new Paper("apples");
 const dullPencil = new Pencil();
+const pencil = new Pencil({ pointDuribility: 100 });
 
 describe("Pencil Class", () => {
   describe("Constructor method", () => {
     test("it constructs a new pencil object with specified properties", () => {
-      const pencil = new Pencil(properties);
-      expect(pencil.pointDuribility).toBe(40000);
+      const myPencil = new Pencil(properties);
+      expect(myPencil.pointDuribility).toBe(40000);
+      expect(myPencil.POINTINESS).toBe(40000);
     });
 
     test("it constructs a new pencil object with default properties", () => {
       expect(dullPencil.pointDuribility).toBe(0);
+      expect(dullPencil.POINTINESS).toBe(0);
     });
   });
 
   describe("Write method", () => {
     describe("pointy case", () => {
-      const pencil = new Pencil({ pointDuribility: 100 });
       const reminder = "finish the kata as soon as possible"; //29
       const items = " ,oranges, milk, cereal, bread, eggs"; //31
       pencil.write(reminder, note);
@@ -84,6 +86,13 @@ describe("Pencil Class", () => {
         );
         expect(dullPencil.pointDuribility).toBe(0);
       });
+    });
+  });
+
+  describe("Sharpen", () => {
+    test("it resets the pointDurability of the pencil", () => {
+      pencil.sharpen();
+      expect(pencil.pointDuribility).toBe(100);
     });
   });
 });

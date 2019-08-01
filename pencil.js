@@ -1,5 +1,6 @@
 class Pencil {
   constructor(property = { pointDuribility: 0 }) {
+    this.POINTINESS = property.pointDuribility;
     this.pointDuribility = property.pointDuribility;
   }
 
@@ -22,6 +23,10 @@ class Pencil {
     }
     paper.content += newText;
     return paper;
+  }
+
+  sharpen() {
+    this.pointDuribility = this.POINTINESS;
   }
 }
 
