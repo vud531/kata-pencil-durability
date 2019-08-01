@@ -45,6 +45,33 @@ describe("Pencil Class", () => {
         pencil.write(`I AM YELLING`);
         expect(pencil.pointDuribility).toBe(expectedLength - 20);
       });
+
+      test("it write different types of whitespace character", () => {
+        const whitespace = ` `;
+        let tempPaper = pencil.write(whitespace);
+        expect(tempPaper.content).toBe(` `);
+        const newline = `
+        `;
+        tempPaper = pencil.write(newline);
+        expect(tempPaper.content).toBe(`
+        `);
+
+        const tab = "    ";
+        tempPaper = pencil.write(tab);
+        expect(tempPaper.content).toBe("    ");
+
+        const whitespaces = `\r\n\t`;
+        tempPaper = pencil.write(whitespaces);
+
+        expect(tempPaper.content).toBe(`\r\n\t`);
+        expect(pencil.pointDuribility).toBe(20);
+        pencil.write(`\n`, note);
+        expect(note.content).toBe(`finish the kata as soon as possible\n`);
+        pencil.write(`         `, note);
+        expect(note.content).toBe(
+          `finish the kata as soon as possible\n         `
+        );
+      });
     });
 
     describe("dull case", () => {
