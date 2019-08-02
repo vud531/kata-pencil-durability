@@ -2,7 +2,7 @@ const Paper = require("./paper");
 const Pencil = require("./pencil");
 
 const properties = {
-  pointDurability: 40000
+  point: 40000
 };
 
 const pencil = new Pencil(properties);
