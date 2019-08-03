@@ -33,14 +33,14 @@ describe("Pencil Class", () => {
   describe("Write method", () => {
     describe("pointy case", () => {
       const reminder = "finish the kata as soon as possible"; //29
-      const items = " ,oranges, milk, cereal, bread, eggs"; //31
+      const items = ", oranges, milk, cereal, bread, eggs"; //31
       pencil.write(reminder, note);
       pencil.write(items, shoppingList);
 
       test("it appends text to the content of the paper", () => {
         expect(note.content).toBe(reminder);
         expect(shoppingList.content).toBe(
-          "apples ,oranges, milk, cereal, bread, eggs"
+          "apples, oranges, milk, cereal, bread, eggs"
         );
       });
 
@@ -91,7 +91,7 @@ describe("Pencil Class", () => {
         expect(draft.content).toBe("              ");
         dullPencil.write(" ,butter knife", shoppingList);
         expect(shoppingList.content).toBe(
-          "apples ,oranges, milk, cereal, bread, eggs              "
+          "apples, oranges, milk, cereal, bread, eggs              "
         );
       });
 
@@ -114,7 +114,36 @@ describe("Pencil Class", () => {
     test("it can't be sharpened again until the point degrades", () => {
       expect(() => {
         pencil.sharpen();
-      }).toThrow("Pencil Already Sharpened");
+      }).toThrow("Pencil Fully Sharpened");
+    });
+  });
+
+  describe("Erase method", () => {
+    test("it throws an error when the paper does not include the occurence", () => {
+      expect(() => {
+        pencil.erase("onion", shoppingList);
+      }).toThrow("Occurence Not Found");
+    });
+
+    test("it preplace the beginning characters with empty strings", () => {
+      pencil.erase("apples, oranges", shoppingList);
+      expect(shoppingList.content).toBe(
+        "               , milk, cereal, bread, eggs              "
+      );
+    });
+
+    test("it preplace the middle characters with empty strings", () => {
+      pencil.erase("cereal, bread", shoppingList);
+      expect(shoppingList.content).toBe(
+        "               , milk,              , eggs              "
+      );
+    });
+    test("it preplace the ending characters with empty strings", () => {
+      pencil.write("onion, fish, beef, pork", shoppingList);
+      pencil.erase("beef, pork", shoppingList);
+      expect(shoppingList.content).toBe(
+        "               , milk,              , eggs              onion, fish,           "
+      );
     });
   });
 });

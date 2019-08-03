@@ -8,38 +8,69 @@ class Pencil {
   }
 
   write(text, paper = { content: "" }) {
-    let newText = "";
-    for (let i = 0; i < text.length; i++) {
-      if (this.point) {
-        const char = text[i];
-        newText += char;
-        char.trim().length && char.toLowerCase() === char && this.point--;
+    let content = "";
 
-        if (char.trim().length && char.toLowerCase() !== char) {
+    for (let i = 0; i < text.length; i++) {
+      const pointNotDull = this.point;
+      if (pointNotDull) {
+        const char = text[i];
+        const charNotEmpty = char.trim().length;
+        const charIsLowerCase = char.toLowerCase() === char;
+
+        content += char;
+
+        if (charNotEmpty && charIsLowerCase) {
+          this.point--;
+        }
+
+        if (charNotEmpty && !charIsLowerCase) {
           this.point -= 2;
         }
       } else {
-        newText += " ";
+        content += " ";
       }
     }
-    paper.content += newText;
+    paper.content += content;
     return paper;
   }
 
   sharpen() {
-    if (!this.length) throw new Error("Pencil Out Of Length");
+    const pencilOutOfLength = !this.length;
+    if (pencilOutOfLength) throw new Error("Pencil Out Of Length");
 
-    if (this.point === this.POINTINESS)
-      throw new Error("Pencil Already Sharpened");
+    const pencilFullySharpened = this.point === this.POINTINESS;
+    if (pencilFullySharpened) {
+      throw new Error("Pencil Fully Sharpened");
+    }
 
-    if (this.length) {
+    if (!pencilOutOfLength) {
       this.point = this.POINTINESS;
       this.length--;
       return;
     }
   }
 
-  erase(text, paper) {}
+  erase(occurence, paper) {
+    const index = paper.content.lastIndexOf(occurence);
+    const occurenceNotFound = index === -1;
+    if (occurenceNotFound) throw new Error("Occurence Not Found");
+
+    let newContent = paper.content.substring(0, index);
+
+    for (let i = 0; i < occurence.length; i++) {
+      const charNotEmpty = paper.content[index];
+      const PencilCanErase = this.eraser;
+      if (charNotEmpty && PencilCanErase) {
+        newContent += " ";
+        this.eraser--;
+      } else {
+        newContent += paper.content[index];
+      }
+    }
+
+    newContent += paper.content.slice(index + occurence.length);
+    paper.content = newContent;
+  }
 }
 
 module.exports = Pencil;
