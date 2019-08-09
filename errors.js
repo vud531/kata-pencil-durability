@@ -1,11 +1,12 @@
 const PencilPointError = {
   name: "PencilPointError",
-  message: "this pencil is dull or broken"
+  message:
+    "the point value of this pencil must be a positive integer and less than or equal to the fullPoint value"
 };
 
 const PencilFullPointError = {
   name: "PencilFullPointError",
-  message: "this pencil must have a positive fullPoint value"
+  message: "the fullPoint value of this pencil must be a positive integer"
 };
 
 module.exports = {
