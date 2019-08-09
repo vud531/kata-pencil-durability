@@ -1,3 +1,4 @@
+const PencilPointError = require("./errors").PencilPointError;
 const write = require("./").write;
 
 const pencil = {};
@@ -9,21 +10,21 @@ describe("write", () => {
     test("throws an err if pencil point is undefined", () => {
       expect(() => {
         write(pencil, paper, text);
-      }).toThrow("Pencil Is Dull");
+      }).toThrow(PencilPointError);
     });
 
     test("throws an err if pencil point is null", () => {
       pencil.point = null;
       expect(() => {
         write(pencil, paper, text);
-      }).toThrow("Pencil Is Dull");
+      }).toThrow(PencilPointError);
     });
 
     test("throws an err if pencil point is undefined", () => {
       pencil.point = 0;
       expect(() => {
         write(pencil, paper, text);
-      }).toThrow("Pencil Is Dull");
+      }).toThrow(PencilPointError);
     });
   });
 });

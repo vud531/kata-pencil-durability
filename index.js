@@ -1,6 +1,7 @@
+const PencilPointError = require("./errors").PencilPointError;
 const write = (pencil, paper, text) => {
-  if (pencil && !pencil.point) {
-    throw new Error("Pencil Is Dull");
+  if (!pencil.point) {
+    throw PencilPointError;
   }
 };
 
