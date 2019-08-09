@@ -48,12 +48,14 @@ describe("write", () => {
         write(pencil, paper, text);
       }).toThrow(PencilPointError);
     });
+  });
 
-    // test("when the paper has no content property, creates an empty content, then writes the text to content", () => {
-    //   pencil.point = 10;
-    //   write(pencil, paper, text);
-    //   expect(paper.content).toBe(text);
-    //   expect(pencil.point).toBe(text.)
-    // });
+  describe("instructs a pencil to write on a sheet of paper", () => {
+    test("when the paper has no content property, creates an empty content, then writes the text to content", () => {
+      pencil.point = 10;
+      write(pencil, paper, text);
+      expect(paper.content).toBe(text);
+      // expect(pencil.point).toBe(text.)
+    });
   });
 });
