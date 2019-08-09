@@ -120,6 +120,7 @@ describe("Pencil Class", () => {
 
   describe("Erase method", () => {
     test("it throws an error when the paper does not include the occurence", () => {
+      expect(shoppingList.eraserPosition).toBe(null);
       expect(() => {
         pencil.erase("onion", shoppingList);
       }).toThrow("Occurence Not Found");
@@ -130,6 +131,8 @@ describe("Pencil Class", () => {
       expect(shoppingList.content).toBe(
         "               , milk, cereal, bread, eggs              "
       );
+      expect(shoppingList.eraserPosition).toBe(0);
+      pencil.edit("", shoppingList);
     });
 
     test("it preplace the middle characters with empty strings", () => {
@@ -137,13 +140,19 @@ describe("Pencil Class", () => {
       expect(shoppingList.content).toBe(
         "               , milk,              , eggs              "
       );
+      pencil.edit("", shoppingList);
     });
+
     test("it preplace the ending characters with empty strings", () => {
       pencil.write("onion, fish, beef, pork", shoppingList);
       pencil.erase("beef, pork", shoppingList);
       expect(shoppingList.content).toBe(
         "               , milk,              , eggs              onion, fish,           "
       );
+    });
+
+    test("it updates the paper's Eraser Position", () => {
+      expect(shoppingList.eraserPosition).toBe(69);
     });
   });
 });

@@ -13,15 +13,13 @@ describe("Paper Class", () => {
       const text = "She sells sea shells";
       const paper = new Paper(text);
       expect(paper.content).toBe("She sells sea shells");
-      expect(paper.writePosition).toBe(text.length);
-      expect(paper.erasePosition).toBe(text.length);
+      expect(paper.eraserPosition).toBe(null);
     });
 
     test("it constructs a new paper object with an empty text", () => {
       const paper = new Paper();
       expect(paper.content).toBe("");
-      expect(paper.writePosition).toBe(0);
-      expect(paper.erasePosition).toBe(0);
+      expect(paper.eraserPosition).toBe(null);
     });
   });
 });

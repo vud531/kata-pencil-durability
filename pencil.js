@@ -51,10 +51,17 @@ class Pencil {
   }
 
   erase(occurence, paper) {
+    const textPreviouslyErased = paper && paper.eraserPosition !== null;
+    if (textPreviouslyErased) {
+      throw new Error("Paper Needs Editting");
+    }
+
     const index = paper.content.lastIndexOf(occurence);
     const occurenceNotFound = index === -1;
-    if (occurenceNotFound) throw new Error("Occurence Not Found");
-
+    if (occurenceNotFound) {
+      throw new Error("Occurence Not Found");
+    }
+    paper.eraserPosition = index;
     let newContent = paper.content.substring(0, index);
 
     for (let i = 0; i < occurence.length; i++) {
@@ -70,6 +77,21 @@ class Pencil {
 
     newContent += paper.content.slice(index + occurence.length);
     paper.content = newContent;
+  }
+
+  edit(text, paper) {
+    const textPreviouslyErased = paper && paper.eraserPosition !== null;
+    if (!textPreviouslyErased) {
+      throw new Error("Erased Text Not Found");
+    }
+    const index = paper.eraserPosition;
+    let newContent = paper.content.substring(0, index);
+
+    // const index = this.eraserPosition
+    // for (let i = 0; i < text.length; i++) {
+    //   newContent +=
+    // }
+    paper.eraserPosition = null;
   }
 }
 
