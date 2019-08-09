@@ -1,13 +1,16 @@
-const PencilPointError = require("./errors").PencilPointError;
-const PencilFullPointError = require("./errors").PencilFullPointError;
+const validatePencil = require("./helpers/pencilValidator");
 
 const write = (pencil, paper, text) => {
-  if (!pencil.fullPoint) {
-    throw PencilFullPointError;
+  validatePencil(pencil);
+
+  if (!paper.content) {
+    paper.content = "";
   }
-  if (!pencil.point) {
-    throw PencilPointError;
-  }
+
+  text.split("").forEach((char, index) => {
+    paper.content += char;
+    char.trim() === "" && pencil.point--;
+  });
 };
 
 module.exports = {
