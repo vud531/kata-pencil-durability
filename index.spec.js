@@ -5,6 +5,7 @@ const write = require("./").write;
 const pencil = {};
 const paper = {};
 const text = "Let's start writing";
+const whiteSpaceText = "\n\t\r";
 
 describe("write", () => {
   describe("validate the pencil object before writing on the sheet of paper", () => {
@@ -46,7 +47,7 @@ describe("write", () => {
   });
 
   describe("instructs a pencil to write on a sheet of paper", () => {
-    describe("when the paper has no content property, creates an empty content, then writes the text to content", () => {
+    describe("when paper's content is undefined, assignt an empty string to the it", () => {
       test("the paper's content is equal to the new text", () => {
         pencil.point = 20;
         write(pencil, paper, text);
@@ -58,6 +59,19 @@ describe("write", () => {
       });
     });
 
-    describe("the pencil goes dull when point property reach 0 value", () => {});
+    describe("when writing \\n, \\t, \\r", () => {
+      test("the size of the paper's content should equal to the current size plus the size of white space text", () => {
+        write(pencil, paper, whiteSpaceText);
+        expect(paper.content.length).toBe(text.length + whiteSpaceText.length);
+      });
+      test("the point of pencil should not degrade", () => {
+        expect(pencil.point).toBe(2);
+      });
+    });
+
+    describe("writing causes pencils to go dull", () => {
+      // write(pencil, paper, text);
+      // expect()
+    });
   });
 });

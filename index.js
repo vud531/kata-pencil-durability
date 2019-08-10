@@ -3,15 +3,15 @@ const validatePencil = require("./helpers/pencilValidator");
 const isDull = pencil => {
   return pencil.point <= 0;
 };
-const isEmpty = char => {
-  char.trim() === "";
+const isWhiteSpace = str => {
+  return str.trim().length === 0;
 };
 const isLowerCase = char => {
-  return !isEmpty(char) && char.toLowerCase() === char;
+  return /[a-z]/g.test(char);
 };
 
 const isUpperCase = char => {
-  return !isEmpty(char) && char.toLowerCase() !== char;
+  return /[A-Za]/g.test(char);
 };
 
 const write = (pencil, paper, text) => {
@@ -21,19 +21,28 @@ const write = (pencil, paper, text) => {
     paper.content = "";
   }
 
-  text.split("").forEach((char, index) => {
-    if (!isDull(pencil)) {
-      paper.content += char;
-    } else {
-      paper.content += " ";
-    }
+  if (isWhiteSpace(text)) {
+    paper.content += text;
+    return;
+  }
 
-    if (isLowerCase(char)) {
-      pencil.point--;
-    } else if (isUpperCase(char)) {
-      pencil.pont -= 2;
+  let newContent = "";
+  for (let i = 0; i < text.length; i++) {
+    if (!isDull(pencil)) {
+      newContent += text[i];
+      if (isLowerCase(text[i])) {
+        pencil.point--;
+      } else if (isUpperCase(text[i])) {
+        pencil.point -= 2;
+      } else if (!isWhiteSpace(text[i])) {
+        pencil.point--;
+      }
+    } else {
+      newContent += " ";
     }
-  });
+  }
+
+  paper.content += newContent;
 };
 
 module.exports = {

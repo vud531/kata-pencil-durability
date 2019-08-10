@@ -3,7 +3,7 @@ const PencilFullPointError = require("../errors").PencilFullPointError;
 
 const validatePencil = pencil => {
   const { fullPoint, point } = pencil;
-  if (!fullPoint || fullPoint < 0) {
+  if (isNaN(fullPoint) || !fullPoint || fullPoint < 0) {
     throw PencilFullPointError;
   }
 
