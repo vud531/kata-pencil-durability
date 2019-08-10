@@ -2,11 +2,12 @@ const PencilPointError = require("../errors").PencilPointError;
 const PencilFullPointError = require("../errors").PencilFullPointError;
 
 const validatePencil = pencil => {
-  if (!pencil.fullPoint) {
+  const { fullPoint, point } = pencil;
+  if (!fullPoint || fullPoint < 0) {
     throw PencilFullPointError;
   }
 
-  if (!pencil.point) {
+  if (isNaN(point) || point === null || point < 0 || point > fullPoint) {
     throw PencilPointError;
   }
 };
