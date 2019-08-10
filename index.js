@@ -1,5 +1,19 @@
 const validatePencil = require("./helpers/pencilValidator");
 
+const isDull = pencil => {
+  return pencil.point <= 0;
+};
+const isEmpty = char => {
+  char.trim() === "";
+};
+const isLowerCase = char => {
+  return !isEmpty(char) && char.toLowerCase() === char;
+};
+
+const isUpperCase = char => {
+  return !isEmpty(char) && char.toLowerCase() !== char;
+};
+
 const write = (pencil, paper, text) => {
   validatePencil(pencil);
 
@@ -8,8 +22,17 @@ const write = (pencil, paper, text) => {
   }
 
   text.split("").forEach((char, index) => {
-    paper.content += char;
-    char.trim() === "" && pencil.point--;
+    if (!isDull(pencil)) {
+      paper.content += char;
+    } else {
+      paper.content += " ";
+    }
+
+    if (isLowerCase(char)) {
+      pencil.point--;
+    } else if (isUpperCase(char)) {
+      pencil.pont -= 2;
+    }
   });
 };
 

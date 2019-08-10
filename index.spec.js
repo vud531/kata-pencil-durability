@@ -8,6 +8,8 @@ const text = "Let's start writing";
 
 describe("write", () => {
   describe("validate the pencil object before writing on the sheet of paper", () => {
+    beforeEach(() => {});
+
     test("throws an err when the pencil fullPoint is undefined", () => {
       expect(() => {
         write(pencil, paper, text);
@@ -41,21 +43,21 @@ describe("write", () => {
         write(pencil, paper, text);
       }).toThrow(PencilPointError);
     });
-
-    test("throws an err when the pencil point is undefined", () => {
-      pencil.point = 0;
-      expect(() => {
-        write(pencil, paper, text);
-      }).toThrow(PencilPointError);
-    });
   });
 
   describe("instructs a pencil to write on a sheet of paper", () => {
-    test("when the paper has no content property, creates an empty content, then writes the text to content", () => {
-      pencil.point = 10;
-      write(pencil, paper, text);
-      expect(paper.content).toBe(text);
-      // expect(pencil.point).toBe(text.)
+    describe("when the paper has no content property, creates an empty content, then writes the text to content", () => {
+      test("the paper's content is equal to the new text", () => {
+        pencil.point = 20;
+        write(pencil, paper, text);
+        expect(paper.content).toBe(text);
+      });
+
+      test("the pencil's point degrades", () => {
+        expect(pencil.point).toBe(2);
+      });
     });
+
+    describe("the pencil goes dull when point property reach 0 value", () => {});
   });
 });
